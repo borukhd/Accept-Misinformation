@@ -1,0 +1,24 @@
+{
+        "type": "coverage",
+        "data.pre_train": "../data/exp23mini.csv",
+        "data.test": "../data/exp23mini.csv",
+        "corresponding_data": true,
+        "domains": ["misinformation"],
+        "response_types": ["single-choice"],
+        "models": [
+            "../models/Heuristic/fftzigzag.py",
+            "../models/Heuristic/fftmax.py",
+            "../models/Heuristic/fft.py",
+            "../models/Heuristic/hrlinear.py",
+            "../models/Heuristic/hr.py",
+            "../models/Heuristic/rt.py",
+            "../models/Recommender/recommenderPersonLinear.py",
+            "../models/ClassicalReasoning/cr.py",
+            "../models/MotivatedReasoning/s2mr.py",
+            "../models/Baseline/rand.py",
+            "../models/Baseline/corr.py",
+            "../models/Baseline/rej.py",
+            "../models/LinearCombination/fpit.py",
+            "../models/LinearCombination/lc.py",
+            "../models/LinearCombination/sent.py"
+        ]}
