@@ -21,10 +21,7 @@ for number in ['1','2']:
     data_pd = pd.read_csv("data/st"+number+".csv") 
     columns.extend(list(data_pd.columns))
     item_rows = [a for a in data_pd.columns if '_' in a and ("Fake" in a and a.split("Fake")[-1] and len(a.split("Fake"))>1 and RepresentsInt(a.split("Fake")[-1][0]) or ("Real" in a and  a.split("Real")[-1] and len(a.split("Real"))>1 and RepresentsInt(a.split("Real")[-1][0])))] 
-
-    data_pd = pd.read_csv("data/st"+number+".csv") 
-    columns.extend(list(data_pd.columns))
-
+    print(item_rows)
     data = data_pd.to_dict('index') 
 
     items = {}
