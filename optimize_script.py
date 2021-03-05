@@ -28,7 +28,7 @@ numberExceptions = 0
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
-models = [CR, FFTmax, FFTzigzag, S2MR, LP, Hybrid, RT, RH, RHlinear,  ]## 
+models = [CR, FFTmax, FFTzigzag, S2MR, LP, RT, RH, RHlinear, Hybrid,  ]## 
 
 dataTrials = pd.read_csv("allitems.csv")
 
