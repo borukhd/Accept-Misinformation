@@ -1,5 +1,5 @@
 # When Does an Individual Accept Misinformation?
-This repository provides a selection of CCOBRA models for reasoning with misinformation. The models use a cache file and can thus be evaluated quickly, once a parameter setting has been pre-trained. For pre-training (optimizing parameters), an additional script is provided, as well as for transforming the originaly experimental data (source: https://osf.io/tuw89/) into CCOBRA-readable format. Further, optimization hyperparameters for bounded basinhopping are consistent and managed in class "optPars".
+This repository provides a selection of CCOBRA models for reasoning with misinformation. The models use a cache file and can thus be evaluated quickly, once a parameter setting has been pre-trained. For pre-training (optimizing parameters), an additional script is provided, as well as for transforming the originaly experimental data (source: https://osf.io/tuw89/ (st1, st2, pretest), https://osf.io/dg85h/ (st3)) into CCOBRA-readable format. Further, optimization hyperparameters for bounded basinhopping are consistent and managed in class "optPars".
 ## Models
  - Classical Reasoning -- People who think analytically, classify news items more accurately.
  - Motivated Reasoning -- People who think analytically, classify information as correct that is favorable with respect to their own political stance.
