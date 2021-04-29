@@ -1,4 +1,5 @@
 from random import betavariate
+from shutil import copyfile
 from models.LinearCombination.optimizationParameters import OptPars
 import pandas as pd 
 import os 
@@ -86,15 +87,10 @@ f = open("models/pars_other.txt", "w")
 f.write("{}")
 f.close()
 """
+copyfile('models/pars_other12.txt', 'models/pars_other.txt')
+
 parameterDict = open('models/pars_other.txt', 'r').read()
-parameterDict_sent = open('pars_with_sent.txt', 'r').read()
 OptPars.parsPerPers = eval(parameterDict)
-sent_dict = {}#eval(parameterDict_sent)
-for a in sent_dict.keys():
-    if a not in OptPars.parsPerPers.keys():
-        OptPars.parsPerPers[a] = {}
-    for b in sent_dict[a].keys():
-        OptPars.parsPerPers[a][b] = sent_dict[a][b]
 
 print('Total trials:', sum([len(a) for a in training_list]))
 trial_resp = {}
@@ -181,7 +177,7 @@ for model in models:
     print(len(model_tendency), ' trials in persons:', len(average_pers_accuracy))
         
     try:
-        f = open("models/pars_other.txt", "w")
+        f = open("models/pars_other12.txt", "w")
         f.write(str(OptPars.parsPerPers))
         f.close()
     except IOError:

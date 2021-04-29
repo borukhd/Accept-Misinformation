@@ -66,17 +66,13 @@ class Hybrid(ccobra.CCobraModel):
         
     def pre_train_person(self, dataset):
         if Hybrid.data == None:
-            try:
-                reader = csv.DictReader(open(str(Path(__file__).absolute()).split('models')[0] + 'modeloutputs.csv', 'r'))
-                Hybrid.data = {}
-                for row in reader:
-                    person = str(int(float(row['id']))) 
-                    if person not in Hybrid.data.keys():
-                        Hybrid.data[person] = {}
-                    Hybrid.data[person][row['task']] = row
-            except:
-                print('No data found')
-                Hybrid.data = {}
+            reader = csv.DictReader(open(str(Path(__file__).absolute()).split('models')[0] + 'modeloutputs.csv', 'r'))
+            Hybrid.data = {}
+            for row in reader:
+                person = str(int(float(row['id']))) 
+                if person not in Hybrid.data.keys():
+                    Hybrid.data[person] = {}
+                Hybrid.data[person][row['task']] = row
 
         if len(OptPars.parsPerPers.keys()) == 0:
             parameterDict = open(str(Path(__file__).absolute()).split('models')[0] + 'models/pars_other.txt', 'r').read()

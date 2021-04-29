@@ -91,7 +91,7 @@ class RT(ccobra.CCobraModel):
         if self.name in OptPars.parsPerPers.keys() and dataset_in[0]['item'].identifier in OptPars.parsPerPers[self.name].keys():
             commandlist = OptPars.parsPerPers[self.name][dataset_in[0]['item'].identifier]
         else:
-            print('pre_train_person for model', self.name, 'person', str(dataset_in[0]['item'].identifier))
+            #print('pre_train_person for model', self.name, 'person', str(dataset_in[0]['item'].identifier))
             dataset = []
             for a in dataset_in:
                 a['aux']['id'] = a['item'].identifier

@@ -30,7 +30,7 @@ class FFTmax(ccobra.CCobraModel):
     componentKeys = []
 
     
-    def __init__(self, name='Fast-Frugal-Tree-Max', commands = []):
+    def __init__(self, name='FFT-Max', commands = []):
         """ Initializes the news reasoning model.
         Parameters
         ----------

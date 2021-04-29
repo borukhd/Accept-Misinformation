@@ -26,7 +26,7 @@ from models.LinearCombination.optimizationParameters import OptPars, RandomDispl
 class RHlinear(ccobra.CCobraModel):
     """ News reasoning CCOBRA implementation.
     """
-    def __init__(self, name='Heuristic-Recognition-linear', commands = []):
+    def __init__(self, name='HeurRecogn-lin.', commands = []):
         """ Initializes the news reasoning model.
         Parameters
         ----------

@@ -15,7 +15,7 @@ class FFTzigzag(ccobra.CCobraModel):
     """ FFTZigZag CCOBRA implementation.
     """
     
-    def __init__(self, name='Fast-Frugal-Tree-ZigZag(Z+)', commands = []):
+    def __init__(self, name='FFT-ZigZag(Z+)', commands = []):
         """ Initializes the model.
         Parameters
         ----------

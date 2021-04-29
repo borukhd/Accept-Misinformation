@@ -1,3 +1,4 @@
+from shutil import copyfile
 from models.Heuristic.surp import SURP
 from random import betavariate
 from models.LinearCombination.optimizationParameters import OptPars
@@ -14,6 +15,7 @@ from models.LinearCombination.sent3 import LP
 from models.LinearCombination.sentimentanalyzer3 import SentimentAnalyzer
 from models.MotivatedReasoning.s2mr import S2MR
 from models.hybrid3 import Hybrid
+
 from numpy.core.numeric import correlate
 from numpy.lib.function_base import average
 
@@ -83,11 +85,14 @@ for ident in set(persons):
         print(len(training_list))
     if len(training_list) < -50:
         break
-#"""
+"""
 f = open("models/pars_other.txt", "w")
 f.write("{}")
-f.close()
-#"""
+f.close()   
+"""
+copyfile('models/pars_other3.txt', 'models/pars_other.txt')
+
+
 parameterDict = open('models/pars_other.txt', 'r').read()
 OptPars.parsPerPers = eval(parameterDict)
 
@@ -178,7 +183,7 @@ for model in models:
     print(len(model_tendency), ' trials in persons:', len(average_pers_accuracy))
         
     try:
-        f = open("models/pars_other.txt", "w")
+        f = open("models/pars_other3.txt", "w")
         f.write(str(OptPars.parsPerPers))
         f.close()
     except IOError:

@@ -179,20 +179,6 @@ class SentimentAnalyzer:
         print(SentimentAnalyzer.relevant)
 
     @staticmethod
-    def filterFrequency_onlyRelevant():  
-        #drops sentiments that occur less than "minimumFreq" times in any headline; including every sentiment would lead to exponential overhead in model optimization functions.  
-        for a in SentimentAnalyzer.relevant:
-            SentimentAnalyzer.count[a] = 0 
-        for task in SentimentAnalyzer.text.keys():
-            for a in SentimentAnalyzer.relevant:
-                SentimentAnalyzer.count[a] += float(SentimentAnalyzer.result[task][a])
-                SentimentAnalyzer.count[a] = SentimentAnalyzer.count[a] 
-        x = SentimentAnalyzer.count
-        minimumFreq = 6
-        SentimentAnalyzer.relevant = [a for a in SentimentAnalyzer.count.keys() if float(SentimentAnalyzer.count[a]) > minimumFreq]
-        print(SentimentAnalyzer.relevant)
-
-    @staticmethod
     def an_dict(task):
         #returns sentiment value for an item's headline as calcuted by Empath.
         if not SentimentAnalyzer.initialized:

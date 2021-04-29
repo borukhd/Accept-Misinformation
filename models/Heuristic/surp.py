@@ -25,7 +25,7 @@ class SURP(ccobra.CCobraModel):
     globalpars = {}
     """ News reasoning CCOBRA implementation.
     """
-    def __init__(self, name='WMSuppressionByMood'):
+    def __init__(self, name='WMSupprByMood'):
         """ Initializes the news reasoning model.
         Parameters
         ----------
