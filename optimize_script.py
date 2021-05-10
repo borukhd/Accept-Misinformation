@@ -184,7 +184,7 @@ for model in models:
         print("I/O error")
 
 
-f = open("modeloutputs.csv", "w")
+f = open("modeloutputs12.csv", "w")
 firstline = ''
 firstline_list = []
 allfeats = []
