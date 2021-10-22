@@ -66,7 +66,7 @@ class Hybrid(ccobra.CCobraModel):
         
     def pre_train_person(self, dataset):
         if Hybrid.data == None:
-            reader = csv.DictReader(open(str(Path(__file__).absolute()).split('models')[0] + 'modeloutputs.csv', 'r'))
+            reader = csv.DictReader(open(str(Path(__file__).absolute()).split('models')[0] + 'modeloutputs12.csv', 'r'))
             Hybrid.data = {}
             for row in reader:
                 person = str(int(float(row['id']))) 

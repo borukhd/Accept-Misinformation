@@ -2,15 +2,7 @@ import pandas as pd
 import os 
 import csv
 from ccobra.data import Item
-from models.ClassicalReasoning.cr import CR
-from models.Heuristic.hr import RH
-from models.Heuristic.hrlinear import RHlinear
-from models.Heuristic.rt import RT
-from models.Heuristic.fftmax import FFTmax
-from models.Heuristic.fftzigzag import FFTzigzag
-from models.LinearCombination.sent import LP
 from models.LinearCombination.sentimentanalyzer import SentimentAnalyzer
-from models.MotivatedReasoning.s2mr import S2MR
 numberExceptions = 0
 
 def rowToItem(row, n):
@@ -105,8 +97,6 @@ def rowToItem(row, n):
 
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
-
-models = [RH, CR, RHlinear, RT, LP, S2MR, FFTmax, FFTzigzag]
 
 dataTrials = pd.read_csv("st_reformatted.csv")
 pretest = pd.read_csv("data/pretest.csv")

@@ -251,7 +251,7 @@ class Node:
             a = 'if ' + self.condition + ': \n\treturn ' + str(self.left) + '\n' 
             a += 'return ' + str(self.right) if isinstance(self.right,bool) else self.right.getstring()
         else:
-            a = 'if not ' + self.condition + ': \n\treturn ' + str(self.right) + '\n' 
+            a = 'if ' + self.condition + ': \n\treturn ' + str(self.right) + '\n' 
             a += 'return ' + str(self.left) if isinstance(self.left,bool) else self.left.getstring()
         return a 
 

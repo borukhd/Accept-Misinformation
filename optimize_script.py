@@ -14,6 +14,9 @@ from models.LinearCombination.sent import LP
 from models.LinearCombination.sentimentanalyzer import SentimentAnalyzer
 from models.MotivatedReasoning.s2mr import S2MR
 from models.hybrid import Hybrid
+from models.Heuristic.hr_rt import RH as RH_RT
+from models.LinearCombination.sent_rt import LP as LP_RT
+from models.MotivatedReasoning.s2mr_rt import S2MR as S2MR_RT
 from numpy.core.numeric import correlate
 from numpy.lib.function_base import average
 
@@ -29,7 +32,7 @@ numberExceptions = 0
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
-models = [CR, FFTmax, FFTzigzag, S2MR, LP, RT, RH, RHlinear, Hybrid,  ]## 
+models = [LP, LP_RT, S2MR, S2MR_RT, FFTmax, RT, RHlinear, CR, FFTzigzag, RH, RH_RT, Hybrid] 
 
 dataTrials = pd.read_csv("allitems.csv")
 
