@@ -14,7 +14,7 @@ sns.set_theme(style="white")
 
 # Generate a large random dataset
 def do(filename, onlyModels = False):
-    models = ['CR&time', 'ClassicReas', 'FFT-Max', 'FFT-ZigZag(Z+)', 'HeurRecogn', 'HeurRecogn-lin.', 'S2MR', 'SentimentAnalysis', 'WMSupprByMood']
+    models = ['CR&time', 'ClassicReas', 'FFT-Max', 'FFT-ZigZag(Z+)', 'HeurRecogn', 'HeurRecogn-lin.', 'S2MR', 'SentimentAnalysis', 'WMSupprByMood', 'WMImprByMood', 'VanBavel',]
 
     inputfilename = filename
 
@@ -57,7 +57,7 @@ def do(filename, onlyModels = False):
     #mask = np.tril(np.ones_like(corr, dtype=bool))
 
     # Set up the matplotlib figure
-    f, ax = plt.subplots(figsize=(8, 7))
+    f, ax = plt.subplots(figsize=(10, 9))
 
     # Generate a custom diverging colormap
     cmap = sns.diverging_palette(230, 20, as_cmap=True)
@@ -68,8 +68,8 @@ def do(filename, onlyModels = False):
                 square=True, linewidths=.5, cbar_kws={"shrink": .5})
     plt.subplots_adjust(left=0.22, bottom=0.22, right=1, top=0.99, wspace=0.2, hspace=0.2)
     
-    plt.show()
     plt.savefig(outname)
+    plt.show()
 
 for a in ['modeloutputs12.csv', 'modeloutputs3.csv']:
-    do(a, True)
+    do(a, False)

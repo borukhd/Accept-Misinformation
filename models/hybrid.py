@@ -66,7 +66,7 @@ class Hybrid(ccobra.CCobraModel):
         
     def pre_train_person(self, dataset):
         if Hybrid.data == None:
-            reader = csv.DictReader(open(str(Path(__file__).absolute()).split('models')[0] + 'modeloutputs12.csv', 'r'))
+            reader = csv.DictReader(open(str(Path(__file__).absolute()).split('models')[0] + 'modeloutputs.csv', 'r'))
             Hybrid.data = {}
             for row in reader:
                 person = str(int(float(row['id']))) 
@@ -86,7 +86,7 @@ class Hybrid(ccobra.CCobraModel):
             model_performances = {}
             person = str(int(float(dataset[0]['item'].identifier))) 
             for task in Hybrid.data[person].keys():
-                for modelname in ['CR&time', 'ClassicReas', 'FFT-Max', 'FFT-ZigZag(Z+)', 'HeurRecogn', 'HeurRecogn-lin.', 'S2MR', 'SentimentAnalysis']:
+                for modelname in ['CR&time', 'ClassicReas', 'FFT-Max', 'FFT-ZigZag(Z+)', 'HeurRecogn', 'HeurRecogn-lin.', 'S2MR', 'SentimentAnalysis', 'PartR', 'VanBavel']:
                     try:
                         model_reply = float(Hybrid.data[person][task][modelname])
                     except:

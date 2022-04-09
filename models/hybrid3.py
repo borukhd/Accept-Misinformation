@@ -86,10 +86,12 @@ class Hybrid(ccobra.CCobraModel):
             model_performances = {}
             person = str(int(float(dataset[0]['item'].identifier))) 
             for task in Hybrid.data[person].keys():
-                for modelname in ['CR&time', 'ClassicReas', 'FFT-Max', 'FFT-ZigZag(Z+)', 'HeurRecogn', 'HeurRecogn-lin.', 'S2MR', 'SentimentAnalysis']:
+                for modelname in ['CR&time', 'ClassicReas', 'FFT-Max', 'FFT-ZigZag(Z+)', 'HeurRecogn', 'HeurRecogn-lin.', 'S2MR', 'SentimentAnalysis', 'PartR', 'VanBavel', 'WMImprByMood', 'WMSupprByMood']:
                     try:
                         model_reply = float(Hybrid.data[person][task][modelname])
                     except:
+                        print(Hybrid.data[person][task].keys(), modelname)
+
                         print('One error in hybrid')
                         return 0.5
                     if modelname not in model_performances.keys():

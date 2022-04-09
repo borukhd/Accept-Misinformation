@@ -1,11 +1,18 @@
 import pandas as pd 
 import os 
 import csv
-from models.LinearCombination.sentimentanalyzer3 import SentimentAnalyzer
 
 from pandas.core.frame import DataFrame
 from ccobra.data import Item
-
+from models.ClassicalReasoning.cr import CR
+from models.Heuristic.hr import RH
+from models.Heuristic.hrlinear import RHlinear
+from models.Heuristic.rt import RT
+from models.Heuristic.fftmax import FFTmax
+from models.Heuristic.fftzigzag import FFTzigzag
+from models.LinearCombination.sent import LP
+from models.LinearCombination.sentimentanalyzer import SentimentAnalyzer
+from models.MotivatedReasoning.s2mr import S2MR
 numberExceptions = 0
 
 def rowToItem(row, n):
@@ -140,6 +147,7 @@ def rowToItem(row, n):
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
+models = [RH, CR, RHlinear, RT, LP, S2MR, FFTmax, FFTzigzag]
 
 f = open('data/pretest3.csv', 'r')
 fn = open('data/pretest3n.csv', 'w')

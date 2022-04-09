@@ -1,6 +1,7 @@
 from shutil import copyfile
 from models.Heuristic.surp import SURP
 from random import betavariate
+from models.Heuristic.surp_impr import SURP_Impr
 from models.LinearCombination.optimizationParameters import OptPars
 import pandas as pd 
 import os 
@@ -13,13 +14,10 @@ from models.Heuristic.fftmax3 import FFTmax
 from models.Heuristic.fftzigzag3 import FFTzigzag
 from models.LinearCombination.sent3 import LP
 from models.LinearCombination.sentimentanalyzer3 import SentimentAnalyzer
+from models.MotivatedReasoning.partr import PARTR
 from models.MotivatedReasoning.s2mr import S2MR
-from models.Heuristic.surp_rt import SURP as SURP_RT
-from models.Heuristic.hr_rt import RH as RH_RT
-from models.LinearCombination.sent3_rt import LP as LP_RT
-from models.MotivatedReasoning.s2mr_rt import S2MR as S2MR_RT
+from models.MotivatedReasoning.vanbavel import vanBavel
 from models.hybrid3 import Hybrid
-
 
 from numpy.core.numeric import correlate
 from numpy.lib.function_base import average
@@ -29,14 +27,14 @@ import numpy as np
 from numpy.core.fromnumeric import mean
 
 from numpy.lib.twodim_base import tri
-from scipy.optimize.optimize import brute
+from scipy.optimize import brute
 numberExceptions = 0
 
 
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
-models = [CR, FFTmax, FFTzigzag, S2MR, LP, RT, RH, RHlinear, S2MR_RT, RH_RT, SURP, SURP_RT, LP_RT, Hybrid] 
+models = [CR, FFTmax, FFTzigzag, S2MR, LP, RT, RH, RHlinear, SURP, SURP_Impr, vanBavel, Hybrid]## 
 
 dataTrials = pd.read_csv("allitems3.csv")
 
@@ -147,9 +145,11 @@ for model in models:
             
     except:"""
     average_accuracy = []
+    average_correctness = []
     model_tendency = []
     person_tendency = []
     average_pers_accuracy = []
+    average_pers_correctness = []
     tl = training_list.copy()
     for triallist in tl:
         if triallist[0]['id'] < 900:
@@ -163,6 +163,7 @@ for model in models:
                 continue
         model_inst.pre_train_person(triallist.copy())
         pers_accuracy = []
+        pers_correctness = []
         for trial in triallist:
             prediction_m = model_inst.predictS(trial['item'], kwargs=trial)
             #prediction = 1 if trial['Familiarity_Party_Combined'] > 2.5130623903980265 else 0
@@ -170,22 +171,28 @@ for model in models:
             bounded_prediction = min(1, max(0, prediction_m))
             person_response = float(trial['binaryResponse'])
             #print(bounded_prediction)
-            correctness = 1-abs(person_response-float(bounded_prediction))
-            average_accuracy.append(correctness)
-            pers_accuracy.append(correctness)
+            accuracy = 1-abs(person_response-float(bounded_prediction))
+            average_accuracy.append(accuracy)
+            pers_accuracy.append(accuracy)
+            correctness = 1-abs(float(bounded_prediction)-trial['truthful'])
+            average_correctness.append(correctness)
+            pers_correctness.append(correctness)
             person_tendency.append(person_response)
             model_tendency.append(bounded_prediction)
 
             trial_resp[model_inst.name][trial['trial']] = bounded_prediction
         if not trial['id'] % 500:
-            print(trial['id'],'pers done')
+            print('\t\t\t', trial['id'],'pers done')
         average_pers_accuracy.append(np.mean(pers_accuracy))
-    print('average model accuracy', np.mean(average_pers_accuracy))
-    print('median model accuracy', np.median(average_pers_accuracy))
-    print('person tendency', np.mean(person_tendency))
-    print('model tendency', np.mean(model_tendency))
+        average_pers_correctness.append(np.mean(pers_correctness))
+    print('\t average model accuracy', np.mean(average_pers_accuracy))
+    print('\t\t median model accuracy', np.median(average_pers_accuracy))
+    print('\t average model correctness', np.mean(average_pers_correctness))
+    print('\t\t median model correctness', np.median(average_pers_correctness))
+    print('\t person tendency', np.mean(person_tendency))
+    print('\t model tendency', np.mean(model_tendency))
     print(model_inst.name, np.mean(average_accuracy))
-    print(len(model_tendency), ' trials in persons:', len(average_pers_accuracy))
+    print('\t', len(model_tendency), ' trials in persons:', len(average_pers_accuracy))
         
     try:
         f = open("models/pars_other3.txt", "w")
